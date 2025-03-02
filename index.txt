@@ -1,0 +1,24 @@
+Tokens vs JWTs (Json Web Tokens)
+
+// WHY DO WE NEED JWTs OVER TOKENS?
+
+when we sign-in with our username and pw, we get back a random token 
+which we eventually use by passing /me endpoint 
+but this hits the database (in our case the users array) eveytime we hit the /me endpoint
+every time the user sends the req (/me) via the token, it hits the entire database, goes through it and searches for the token
+after finding the token, it gets the username and pw in the database and then returns you the info you need
+which is long and completed process
+
+what if we dont want it to be that completed 
+
+hence we use JWTs 
+
+when the user signs in with username and pw, the token they get back isn't randomly generated anymore
+the token somehow contains the username of the user too to make it recognizable, obviously it is encrypted
+hence we dont have to store the token generated in the database
+so whenever the user sends req(/me) via the token, the backend directly decodes the token to the username 
+hence hits the database directly with the username and returns you the info you need
+
+
+tokens are stateful i.e we need to store it in the og database
+JWTs are stateless i.e we dont have to store it anywhere
