@@ -2,6 +2,7 @@
 
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const { message } = require("statuses");
 
 const app = express();
 const port = 3005;
@@ -51,18 +52,16 @@ app.post("/signin", function(req,res){  //to check if usename and password is co
     else{
         const token = jwt.sign({ username : foundUser.username }, JWT_SECRET);
         res.json({
-            token: token
+            token: token,
+            message: "login successful"
         })
-        res.header("jwt", token);
+        //res.header("jwt", token);
     }
-
-    console.log(users);
 })
-
 
 function auth (req,res,next){
     const token = req.headers.token;
-    console.log("token received now");
+    console.log("received token:", token);
     const decodedInfo = jwt.verify(token, JWT_SECRET); //gives you the decoded data
     const decodedUsername = decodedInfo.username; //gives you the username from the decoded data
 
@@ -82,7 +81,7 @@ app.get("/me", auth, function(req,res){  //to give the token and it will show th
     console.log("received me req");
     let foundusers = null;
     for(let i=0; i<users.length; i++){
-        if(users[i].username == req.username){ //"req.username" has the decoded username passed by the middleware auth
+        if(users[i].username === req.username){ //"req.username" has the decoded username passed by the middleware auth
             foundusers = users[i];
         }
     }
