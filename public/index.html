@@ -37,8 +37,8 @@
         const response = await axios.get("http://localhost:3005/me",{ 
             headers: { token : localStorage.getItem("token")}  //to get the token from local storage and put it on the headers
         })
-        console.log("username is:" + response.data.username + " password is:", response.data.password);
-        document.getElementById("information").innerHTML = "username is:" + response.data.username + " password is:" + response.data.password;
+        console.log("username is: " + response.data.username + " password is:", response.data.password);
+        document.getElementById("information").innerHTML = "Username is: " + response.data.username + " Password is: " + response.data.password;
     }
     meFunc();
 </script>
@@ -67,9 +67,9 @@
         </div> 
     </div>
 
-    <div class="text-white">
-        <h1 class="flex justify-center font-semibold text-xl">User Information:</h1>
-        <h1 id="information" class="text-white text-2xl"></h1>
+    <div class="text-white flex justify-center gap-3">
+        <h1 class="font-semibold text-xl">User Information:</h1>
+        <h1 id="information" class="text-white text-xl"></h1>
     </div>
 </body>
 </html>
