@@ -55,7 +55,7 @@ app.post("/signin", function(req,res){  //to check if usename and password is co
             token: token,
             message: "login successful"
         })
-        //res.header("jwt", token);
+        res.header("jwt", token);
     }
 })
 

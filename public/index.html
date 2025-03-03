@@ -34,11 +34,11 @@
     
     async function meFunc(){
         console.log("inside me function");
-        const response = await axios.get("http://localhost:3005/me",{ 
+        const resmade chandeponse = await axios.get("http://localhost:3005/me",{ 
             headers: { token : localStorage.getItem("token")}  //to get the token from local storage and put it on the headers
         })
         console.log("username is:" + response.data.username + " password is:", response.data.password);
-        document.getElementById("information").innerHTML = "username is:" + response.data.username + " password is:", response.data.password;
+        document.getElementById("information").innerHTML = "username is:" + response.data.username + " password is:" + response.data.password;
     }
     meFunc();
 </script>
