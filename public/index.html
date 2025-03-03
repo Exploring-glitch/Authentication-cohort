@@ -38,9 +38,13 @@
             headers: { token : localStorage.getItem("token")}  //to get the token from local storage and put it on the headers
         })
         console.log("username is: " + response.data.username + " password is:", response.data.password);
-        document.getElementById("information").innerHTML = "Username is: " + response.data.username + " Password is: " + response.data.password;
+        document.getElementById("information").innerHTML = "Username is " + response.data.username + " and Password is " + response.data.password;
     }
     meFunc();
+
+    async function logoutFunc(){
+        localStorage.removeItem("token")
+    }
 </script>
 
 <body class=" bg-gray-700">
@@ -68,8 +72,11 @@
     </div>
 
     <div class="text-white flex justify-center gap-3">
-        <h1 class="font-semibold text-xl">User Information:</h1>
-        <h1 id="information" class="text-white text-xl"></h1>
+        <h1 class="font-semibold text-2xl">User Information:</h1>
+        <h1 id="information" class="text-white text-2xl"></h1>
     </div>
+
+    <center><button onclick="logoutFunc()" class="bg-red-600 text-white px-4 py-2 mx-14 rounded-md hover:bg-red-700 shadow-md hover:scale-105 font-medium my-10 " >Log out</button></center>
+    
 </body>
 </html>
