@@ -13,27 +13,34 @@
         console.log("inside signup");
         const username = document.getElementById("signupUsername").value;
         const password = document.getElementById("signupPassword").value;
-        await axios.post("http://localhost:3005/signup", { //sends background request to our backend
+        
+        try{
+            await axios.post("http://localhost:3005/signup", { //sends background request to our backend
             username : username,
             password : password
-        })
-        alert("You have successfully signed up");
+            })
+            alert("You have successfully signed up");
+        }
+        catch{
+            console.log("Signup error");
+            alert("Signup request falied!");
+        }   
     }
 
     async function signinFunc(){
-        console.log("inside signin");
         const username = document.getElementById("signinUsername").value;
         const password = document.getElementById("signinPassword").value;
+
         const response = await axios.post("http://localhost:3005/signin", {
-            username : username,
-            password : password
+        username : username,
+        password : password
         })
         localStorage.setItem("token",response.data.token);
         alert("You have successfully signed in");
     }
-    
-    async function meFunc(){
-        console.log("inside me function");
+ 
+    async function meFunc(){ 
+        console.log("inside me function");                                      
         const response = await axios.get("http://localhost:3005/me",{ 
             headers: { token : localStorage.getItem("token")}  //to get the token from local storage and put it on the headers
         })
@@ -44,6 +51,7 @@
 
     async function logoutFunc(){
         localStorage.removeItem("token")
+        alert("Logged out successfully");
     }
 </script>
 
